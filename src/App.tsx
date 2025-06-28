@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
+
 import { PublicLayout } from "@/layouts/public-layout";
 import AuthenticationLayout from "@/layouts/auth-layout";
 import ProtectRoutes from "@/layouts/protected-routes";
@@ -18,7 +20,6 @@ import About from "./routes/about"; // ✅ make sure this exists
 import Contact from "./routes/contact"; // ✅ optional, if you create it
 import Services from "./routes/services";
 
-
 const App = () => {
   return (
     <Router>
@@ -26,16 +27,22 @@ const App = () => {
         {/* public routes */}
         <Route element={<PublicLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/about" element={<About />} />       {/* ✅ added About route */}
-          <Route path="/contact" element={<Contact />} />   {/* ✅ optional Contact route */}
+          <Route path="/about" element={<About />} />{" "}
+          {/* ✅ added About route */}
+          <Route path="/contact" element={<Contact />} />{" "}
+          {/* ✅ optional Contact route */}
           <Route path="/services" element={<Services />} />
-
         </Route>
 
         {/* authentication layout */}
         <Route element={<AuthenticationLayout />}>
           <Route path="/signin/*" element={<SignInPage />} />
           <Route path="/signup/*" element={<SignUpPage />} />
+
+          <Route
+            path="/sso-callback"
+            element={<AuthenticateWithRedirectCallback />}
+          />
         </Route>
 
         {/* protected routes */}
