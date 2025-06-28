@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Mic, Code2, LayoutDashboard, BrainCircuit } from "lucide-react";
 
 const services = [

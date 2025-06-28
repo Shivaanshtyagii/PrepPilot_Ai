@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Briefcase, Mic, Code, MessageSquare } from 'lucide-react';
 
 const features = [
